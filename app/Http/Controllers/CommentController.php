@@ -20,7 +20,24 @@ class CommentController extends Controller
     	$comment->content = $request->content;
 
     	$forum->comments()->save($comment);
+        return back()->withInfo('Komentar telah ditambahkan');
 
-    	return redirect()->route('forum.show', $forum->slug)->withInfo('Komentar berhasil ditambahkan');
+    	// return redirect()->route('forum.show', $forum->slug)->withInfo('Komentar berhasil ditambahkan');
+    }
+
+    public function replyComment(Request $request, Comment $comment)
+    {
+        $request->validate([
+            'content' => 'required|min:3'
+        ]);
+        $reply = New Comment;
+        // $commentCount = Comment::count();
+        $reply->user_id = Auth::user()->id;
+        $reply->content = $request->content;
+
+        $comment->comments()->save($reply);
+
+        return back()->withInfo('Komentar balasan telah ditambahkan');
+        // return redirect()->route('reply.show', $reply->slug)->withInfo('Komentar balasan berhasil ditambahkan');
     }
 }

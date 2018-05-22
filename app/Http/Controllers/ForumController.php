@@ -20,8 +20,8 @@ class ForumController extends Controller
     {
         $forums = Forum::withCount('comments')->paginate(5);
         // $commentCount = Comment::count();
-        $post_view = DB::table('forums')->increment('post_view');
-        return view('forum.index', compact('forums','post_view'));
+        // $post_view = DB::table('forums')->increment('post_view');
+        return view('forum.index', compact('forums'));
     }
 
     /**

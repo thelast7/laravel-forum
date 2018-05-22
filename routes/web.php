@@ -21,7 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/forum', 'ForumController');
 
-Route::get('forum/read/{slug}', 'ForumController@show')->name('forumslug');
+Route::get('/forum/read/{slug}', 'ForumController@show')->name('forumslug');
 
-Route::post('comment/addComment/{forum}', 'CommentController@addComment')->name('addComment');
+Route::post('/comment/addComment/{forum}', 'CommentController@addComment')->name('addComment');
 
+Route::post('/comment/replyComment/{comment}', 'CommentController@replyComment')->name('replyComment');
