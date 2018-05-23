@@ -20,15 +20,15 @@
                           <div class="card">
                              <div class="card-body" style="background: #f9f9f9;"> 
                       <div class="forum_info">
-                     <div class="share pull-right">
+                     {{-- <div class="share pull-right">
                       <a href="#">  <i class="fa fa-facebook"></i></a>
                       <a href="#">  <i class="fa fa-twitter"></i></a>
                       <a href="#">  <i class="fa fa-google-plus"></i></a>
-                      </div>
+                      </div> --}}
                     <a href="#" class="badge badge-success">{{ Auth::user()->name }}</a> |
                     {{-- <small>{{$forums->created_at->diffForHumans()}}</small> | --}}
                     <small>{{ date('j F Y, h:ia', strtotime($forums->created_at)) }}</small> |
-                    <small>0 Views</small> |
+{{--                     <small>0 Views</small> | --}}
                     <small>{{$forums->comments->count()}} Komentar</small> |
                     @foreach($forums->tags as $tag)
                     <div class="badge badge-success">#{{$tag->name}}</div>
@@ -158,16 +158,16 @@
             <div class="panel panel-default" style="background-color: #f9f9f9;">
               <div class="panel-body">
 
-                <div class="add_comment">
-                  <div class="open_comment">
+                {{-- <div class="add_comment"> --}}
+{{--                   <div class="open_comment">
                       <div class="h1"><h4>Tambahkan<br>Komentar</h4></div>
-                  </div>
+                  </div> --}}
 
-                  <div class="comment-show">
+                  <div>
                     <form action="{{route('addComment', $forums->id)}}" method="post">
                       {{csrf_field()}}
                       <div class="form-group">
-                        <input type="text" name="content" id="Your-Answer" placeholder="Komentar:" required="required">
+                        <input type="text" name="content" id="Your-Answer" placeholder="Tambahkan Komentar" required="required">
                         <label for="Your-Comment">Komentar Anda:</label>
 
                       </div>
@@ -176,17 +176,17 @@
                       </div>
                     </form>
                   </div>
-                </div>
+                {{-- </div> --}}
               </div>
             </div>
             </div>
                <div class="col-md-4">
                   <a href="{{route('forum.create')}}" class="btn btn-success btn-block">Buat Diskusi</a><br>
                <div class="card">
-                <div class="card-header" style="background: #2ab27b; color: #fff; padding: 8px 1.25rem;">Popular</div>
+                <div class="card-header" style="background: #2ab27b; color: #fff; padding: 8px 1.25rem;">Peraturan</div>
                 <div class="list-group">
-                 <a href="#" class="list-group-item" id="index_hover">What is Lorem Ipsum?
-                 <a href="#" class="list-group-item" id="index_hover">Where does it come from?
+                <a href="#" class="list-group-item" id="index_hover">
+                  <h5>Peraturan</h5>
                 </a> 
                 </div>
                 </div>
@@ -282,14 +282,14 @@ input:placeholder-shown  + label {
   padding-bottom: 15px;
 }
 
-.add_comment {
+/*.add_comment {
   height:160px;
   border-radius: 4px;
   overflow: hidden;
   position: relative;
-}
+}*/
 
-.open_comment {
+/*.open_comment {
   width: 100%;
   height: 100%;
   display: flex;
@@ -316,7 +316,7 @@ input:placeholder-shown  + label {
 .open .open_comment {
   -webkit-transform: translateX(-400px) translateZ(0);
           transform: translateX(-400px) translateZ(0);
-} 
+} */
 
 .comment-show {
   position: absolute;
@@ -457,7 +457,7 @@ img,
   
 </style>
 
-@section('js')
+{{-- @section('js')
 <script type="text/javascript">
 var openComment = document.querySelector('.h1');
 var addComment = document.querySelector('.add_comment');
@@ -465,4 +465,4 @@ openComment.addEventListener('click', function(){
 addComment.classList.toggle('open'); 
 }); 
 </script>
-@endsection
+@endsection --}}

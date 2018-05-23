@@ -21,10 +21,10 @@
                       <table class="table table-bordered">
                       <thead id="tc_thead">
                         <tr>
-                          <th scope="col">Thread</th>
-                          <th scope="col">Comments</th>
-                          <th scope="col">Views</th>
-                          <th scope="col"></th>
+                          <th scope="col">Diskusi</th>
+                          <th scope="col">Komentar</th>
+{{--                           <th scope="col">Views</th> --}}
+                          <th scope="col">Dibuat</th>
                         </tr>
                       </thead>
                         <tbody style="background: #f9f9f9;">
@@ -47,7 +47,7 @@
 
                             </td>
                             <td  style="text-align: center"><small>{{$forum->comments_count}}</small></td>
-                            <td  style="text-align: center"><small> 2</small></td>
+{{--                             <td  style="text-align: center"><small> 2</small></td> --}}
                             <td>
 
                               <div class="forum_by">
@@ -66,14 +66,17 @@
                       </div>
                       </div>
                         <div class="col-md-4"> <br>
-                          <div class="card">
-                            <div class="card-header" style="background: #2ab27b; color: #fff; padding: 8px 1.25rem;">Popular</div>
-                              <div class="list-group">
-                               <a href="#" class="list-group-item" id="index_hover">What is Lorem Ipsum?
-                               <a href="#" class="list-group-item" id="index_hover">Where does it come from?</a> 
-                              </div>
-                          </div>
+                  <a href="{{route('forum.create')}}" class="btn btn-success btn-block">Buat Diskusi</a><br>
+                                 <div class="card">
+                <div class="card-header" style="background: #2ab27b; color: #fff; padding: 8px 1.25rem;">Peraturan</div>
+                <div class="list-group">
+                <a href="#" class="list-group-item" id="index_hover">
+                 <h5>peraturan</h5>
+                </a> 
+                </div>
+                </div>
                         </div>
+
                     </div>
                 <hr style="margin-top: 0;"> 
                 <div class="card">
