@@ -11,17 +11,43 @@ use DB;
 
 class ForumController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function populars()
+    {
+        $populars = DB::table('forums')
+        ->join('views', 'forums.id', '=', 'views.viewable_id')
+        ->select(DB::raw('count(viewable_id) as count'),'forums.id','forums.title','forums.slug')
+        ->groupBy('id','title','slug')
+        ->orderBy('count','desc')
+        ->take(5)
+        ->get();
+        // $commentCount = Comment::count();
+        // $post_view = DB::table('forums')->increment('post_view');
+        return view('forum.populars', compact('populars'));
+    }
+
+
     public function index()
     {
+        $populars = DB::table('forums')
+        ->join('views', 'forums.id', '=', 'views.viewable_id')
+        ->select(DB::raw('count(viewable_id) as count'),'forums.id','forums.title','forums.slug')
+        ->groupBy('id','title','slug')
+        ->orderBy('count','desc')
+        ->take(5)
+        ->get();
         $forums = Forum::withCount('comments')->paginate(5);
         // $commentCount = Comment::count();
         // $post_view = DB::table('forums')->increment('post_view');
-        return view('forum.index', compact('forums'));
+        return view('forum.index', compact('forums', 'populars'));
     }
 
     /**
@@ -77,13 +103,21 @@ class ForumController extends Controller
      */
     public function show($slug)
     {
+        $populars = DB::table('forums')
+        ->join('views', 'forums.id', '=', 'views.viewable_id')
+        ->select(DB::raw('count(viewable_id) as count'),'forums.id','forums.title','forums.slug')
+        ->groupBy('id','title','slug')
+        ->orderBy('count','desc')
+        ->take(5)
+        ->get();
         $forums = Forum::where('id', $slug)
                         ->orWhere('slug', $slug)
                         ->firstOrFail();
+        $forums->addView();
         // $commentCount = Comment::count();
-        DB::table('forums')->increment('post_view');
+        // DB::table('forums')->increment('post_view');
 
-        return view('forum.show', compact('forums', 'post_view'));
+        return view('forum.show', compact('forums', 'populars'));
     }
 
     /**

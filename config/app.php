@@ -151,6 +151,7 @@ return [
          * Package Service Providers...
          */
         Unisharp\Ckeditor\ServiceProvider::class,
+        CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
         
         /*
          * Application Service Providers...

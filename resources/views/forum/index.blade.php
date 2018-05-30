@@ -15,7 +15,26 @@
             <div class="row">
               <div class="col-md-12" id="tc_container_wrap">
                 <div class="card" id="tc_paneldefault"> 
-                  <div class="card-body" id="tc_panelbody"  style="background: #f9f9f9;">  
+                  <div class="card-body" id="tc_panelbody"  style="background: #f9f9f9;">
+
+                   <div class="card">
+                       <div class="card-header" style="background-color: #2ab27b;padding: 6px 11px 6px 23px;">
+                          <div class="menu_a" style="float: left;">
+                          <a href="{{route('populars')}}">Hot News</a> 
+                          </div>
+{{--                           <div class="search" style="margin: 3px;">
+                          <div class="col-md-4 float-right" style="    padding-right: 0;">
+                          <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Search for..." style=" margin-right: 3px;background: #f5f8fa;">
+                          <span class="input-group-btn">
+                          <button class="btn btn-warning" type="button" style="color: #fff;" >Go!</button>
+                        </span>
+                        </div>
+                       </div>
+                     </div> --}}
+                    </div>
+                  </div>
+
                     <div class="row">
                       <div class="col-md-8" style="    padding-right: 0;"><br>
                       <table class="table table-bordered">
@@ -23,7 +42,7 @@
                         <tr>
                           <th scope="col">Diskusi</th>
                           <th scope="col">Komentar</th>
-{{--                           <th scope="col">Views</th> --}}
+                          <th scope="col">Views</th>
                           <th scope="col">Dibuat</th>
                         </tr>
                       </thead>
@@ -46,13 +65,13 @@
                               </div>
 
                             </td>
-                            <td  style="text-align: center"><small>{{$forum->comments_count}}</small></td>
-{{--                             <td  style="text-align: center"><small> 2</small></td> --}}
+                            <td  style="text-align: center"><small>{{$forum->comments->count()}}</small></td>
+                            <td  style="text-align: center"><small>{{$forum->Views->count()}}</small></td>
                             <td>
 
                               <div class="forum_by">
                                 <small style="margin-bottom: 0; color: #666">{{ date('j F Y', strtotime($forum->created_at)) }}</small>
-                                <small>by <a href="#">{{ Auth::user()->name }}</a></small>
+                                <small>by <a href="#">{{$forum->user->name }}</a></small>
                               </div>
                             </td>
                           </tr>
@@ -68,13 +87,7 @@
                         <div class="col-md-4"> <br>
                   <a href="{{route('forum.create')}}" class="btn btn-success btn-block">Buat Diskusi</a><br>
                                  <div class="card">
-                <div class="card-header" style="background: #2ab27b; color: #fff; padding: 8px 1.25rem;">Peraturan</div>
-                <div class="list-group">
-                <a href="#" class="list-group-item" id="index_hover">
-                 <h5>peraturan</h5>
-                </a> 
-                </div>
-                </div>
+               @include('layouts.popular')
                         </div>
 
                     </div>

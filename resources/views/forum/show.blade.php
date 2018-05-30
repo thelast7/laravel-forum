@@ -25,10 +25,10 @@
                       <a href="#">  <i class="fa fa-twitter"></i></a>
                       <a href="#">  <i class="fa fa-google-plus"></i></a>
                       </div> --}}
-                    <a href="#" class="badge badge-success">{{ Auth::user()->name }}</a> |
+                    <a href="#" class="badge badge-success">{{$forums->user->name }}</a> |
                     {{-- <small>{{$forums->created_at->diffForHumans()}}</small> | --}}
                     <small>{{ date('j F Y, h:ia', strtotime($forums->created_at)) }}</small> |
-{{--                     <small>0 Views</small> | --}}
+                    <small>{{$forums->Views->count()}} Views</small> |
                     <small>{{$forums->comments->count()}} Komentar</small> |
                     @foreach($forums->tags as $tag)
                     <div class="badge badge-success">#{{$tag->name}}</div>
@@ -182,16 +182,9 @@
             </div>
                <div class="col-md-4">
                   <a href="{{route('forum.create')}}" class="btn btn-success btn-block">Buat Diskusi</a><br>
-               <div class="card">
-                <div class="card-header" style="background: #2ab27b; color: #fff; padding: 8px 1.25rem;">Peraturan</div>
-                <div class="list-group">
-                <a href="#" class="list-group-item" id="index_hover">
-                  <h5>Peraturan</h5>
-                </a> 
-                </div>
-                </div>
+                @include('layouts.popular')
             </div>
-             </div>
+            </div>
             <hr style="margin-top: 0;">
               </div>
             </div>
